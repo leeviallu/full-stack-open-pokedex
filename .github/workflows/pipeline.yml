@@ -41,7 +41,7 @@ jobs:
               with:
                     text: A new version of Pokedex deployed
                     severity: info
-                    description: 'to REPO by USER'
+                    description: 'to REPO by ${{ toJson(github.event.pusher.name) }}'
                     details: Test Succeeded!
                     footer: 'Severity: Informational'
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
@@ -51,7 +51,7 @@ jobs:
               with:
                     text: Build failed
                     severity: error
-                    description: 'commit COMMIT by USER broke the build:('
+                    description: 'commit COMMIT by ${{ toJson(github.event.pusher.name) }} broke the build:('
                     details: Test Failed!
                     footer: 'Severity: Error'
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
@@ -82,5 +82,5 @@ jobs:
               WITH_V: true
               PRERELEASE: true
               DEFAULT_BUMP: patch
-              
+
               

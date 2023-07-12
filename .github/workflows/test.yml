@@ -23,6 +23,5 @@ jobs:
           COMMIT_MESSAGES: ${{ toJson(github.event.commits.*.message) }}
         run: echo "$COMMIT_MESSAGES"
       - name: testing data
-        run: echo ${{ toJson(github.event.pusher.name) }}
         run: echo ${{ toJson(github.event.head_commit.url) }}
         
