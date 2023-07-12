@@ -51,7 +51,7 @@ jobs:
               with:
                     text: Build failed
                     severity: error
-                    description: 'commit ${{ toJson(github.event.head_commit.url) }} by ${{ github.event.pusher.name }} broke the build:('
+                    description: 'commit ${{ github.event.head_commit.url }} by ${{ github.event.pusher.name }} broke the build:('
                     details: Test Failed!
                     footer: 'Severity: Error'
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
