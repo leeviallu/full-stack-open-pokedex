@@ -41,7 +41,7 @@ jobs:
               with:
                     text: A new version of Pokedex deployed
                     severity: info
-                    description: 'to https://pokedex-j6pz.onrender.com by ${{ github.event.commits.committer.username }}'
+                    description: 'to https://pokedex-j6pz.onrender.com by ${{ toJson(github.event.commits.committer.username) }}'
                     details: Test Succeeded!
                     footer: 'Severity: Informational'
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
@@ -51,7 +51,7 @@ jobs:
               with:
                     text: Build failed
                     severity: error
-                    description: 'commit ${{ github.event.commits.url }} by ${{ github.event.commits.committer.username }} broke the build:('
+                    description: 'commit ${{ toJson(github.event.commits.url) }} by ${{ toJson(github.event.commits.committer.username) }} broke the build:('
                     details: Test Failed!
                     footer: 'Severity: Error'
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
