@@ -1,9 +1,8 @@
 name: Healthcheck
 
 on:
-    push:
-        branches:
-            - master
+  schedule:
+    - cron:  '00 23 * * *'
 
 jobs:
     check_url:
@@ -28,15 +27,11 @@ jobs:
               with:
                     severity: info
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+                    details: Website is running.
             - name: Failure notification
               uses: rjstone/discord-webhook-notify@v1
               if: ${{ failure() &&  github.event_name == 'push'}}
               with:
                     severity: error
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
-            - name: Cancelled notification
-              uses: rjstone/discord-webhook-notify@v1
-              if: ${{ cancelled() && github.event_name == 'push'}}
-              with:
-                    severity: warn
-                    webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}    
+                    details: Website is down.
