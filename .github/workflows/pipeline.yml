@@ -42,7 +42,6 @@ jobs:
                     text: A new version of Pokedex deployed
                     severity: info
                     description: 'to https://pokedex-j6pz.onrender.com by ${{ github.event.pusher.name }}'
-                    details: Test Succeeded!
                     footer: 'Severity: Informational'
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
             - name: Failure notification
@@ -52,7 +51,6 @@ jobs:
                     text: Build failed
                     severity: error
                     description: 'commit ${{ github.event.head_commit.url }} by ${{ github.event.pusher.name }} broke the build:('
-                    details: Test Failed!
                     footer: 'Severity: Error'
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
             - name: Cancelled notification
@@ -60,7 +58,6 @@ jobs:
               if: ${{ cancelled() && github.event_name == 'push'}}
               with:
                     severity: warn
-                    details: Test Cancelled!
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}    
 
     tag_release:
