@@ -41,7 +41,7 @@ jobs:
               with:
                     text: A new version of Pokedex deployed
                     severity: info
-                    description: 'to https://pokedex-j6pz.onrender.com by ${{ github.event.pusher.name }}''
+                    description: 'to https://pokedex-j6pz.onrender.com by ${{ github.event.pusher.name }}'
                     details: Test Succeeded!
                     footer: 'Severity: Informational'
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
