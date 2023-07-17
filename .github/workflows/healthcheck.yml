@@ -22,4 +22,21 @@ jobs:
                 retry-delay: 5s # Optional, only applicable to max-attempts > 1
                 # Retry all errors, including 404. This option might trigger curl upgrade.
                 retry-all: false # Optional, defaults to "false"
-
+            - name: Success notification
+              uses: rjstone/discord-webhook-notify@v1
+              if: ${{ success() && github.event_name == 'push'}}
+              with:
+                    severity: info
+                    webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+            - name: Failure notification
+              uses: rjstone/discord-webhook-notify@v1
+              if: ${{ failure() &&  github.event_name == 'push'}}
+              with:
+                    severity: error
+                    webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+            - name: Cancelled notification
+              uses: rjstone/discord-webhook-notify@v1
+              if: ${{ cancelled() && github.event_name == 'push'}}
+              with:
+                    severity: warn
+                    webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}    
