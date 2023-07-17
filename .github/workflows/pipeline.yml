@@ -37,7 +37,7 @@ jobs:
                 apiKey: ${{ secrets.RENDER_API_KEY }}
             - name: Success notification
               uses: rjstone/discord-webhook-notify@v1
-              if: success() && ${{ github.event_name == 'push'}}
+              if: ${{ success() && github.event_name == 'push'}}
               with:
                     text: A new version of Pokedex deployed
                     severity: info
@@ -47,7 +47,7 @@ jobs:
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
             - name: Failure notification
               uses: rjstone/discord-webhook-notify@v1
-              if: failure() && ${{ github.event_name == 'push'}}
+              if: ${{ failure() &&  github.event_name == 'push'}}
               with:
                     text: Build failed
                     severity: error
@@ -57,7 +57,7 @@ jobs:
                     webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
             - name: Cancelled notification
               uses: rjstone/discord-webhook-notify@v1
-              if: cancelled() && ${{ github.event_name == 'push'}}
+              if: ${{ cancelled() && github.event_name == 'push'}}
               with:
                     severity: warn
                     details: Test Cancelled!
