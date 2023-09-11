@@ -1,6 +1,6 @@
 name: Healthcheck
 
-on:
+#on:
   #schedule:
     #- cron:  '0 16 * * *'
 
